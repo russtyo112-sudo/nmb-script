@@ -1,0 +1,65 @@
+--- RECOIL CONTROL (MEDIUM)
+
+EnableRCS = true
+
+-- RECOIL VALUES
+VerticalStrength = 0     -- Downward pull
+HorizontalStrength = 0    -- - left / + right
+RequireToggle = true
+ToggleKey = "NumLock"
+
+DelayRate = 7
+
+EnablePrimaryMouseButtonEvents(true)
+
+function OnEvent(event,arg)
+
+if EnableRCS ~= false then
+
+    if RequireToggle ~= false then
+
+        if IsKeyLockOn(ToggleKey) then
+
+            if IsMouseButtonPressed(3) then
+
+                repeat
+
+                    if IsMouseButtonPressed(1) then
+
+                        repeat
+                            MoveMouseRelative(HorizontalStrength, VerticalStrength)
+                            Sleep(DelayRate)
+                        until not IsMouseButtonPressed(1)
+
+                    end
+
+                until not IsMouseButtonPressed(3)
+
+            end
+
+        end
+
+    else
+
+        if IsMouseButtonPressed(3) then
+
+            repeat
+
+                if IsMouseButtonPressed(1) then
+
+                    repeat
+                        MoveMouseRelative(HorizontalStrength, VerticalStrength)
+                        Sleep(DelayRate)
+                    until not IsMouseButtonPressed(1)
+
+                end
+
+            until not IsMouseButtonPressed(3)
+
+        end
+
+    end
+
+end
+
+end
